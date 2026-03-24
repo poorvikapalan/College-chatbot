@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College AI Chatbot</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a192f, #1a1a2e);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* Top navigation bar */
+  nav {
+    width: 100%;
+    background-color: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  nav h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    margin: 0;
+  }
+
+  .nav-buttons button {
+    margin-left: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #c59d5f;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .nav-buttons button:hover {
+    background-color: #b08b52;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(197,157,95,0.5);
+  }
+
+  /* Chatbox container */
+  #chat-container {
+    margin-top: 3rem;
+    width: 450px;
+    max-width: 90%;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    background-color: #ffffff;
+  }
+
+  /* Responsive */
+  @media (max-width: 500px) {
+    #chat-container {
+      height: 500px;
+    }
+    nav h1 {
+      font-size: 1.5rem;
+    }
+    .nav-buttons button {
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+  <h1>College AI Chatbot</h1>
+  
+</nav>
+
+<!-- Chatbox -->
+<div id="chat-container"></div>
+
+<!-- IBM Watson Assistant Script -->
+<script>
+  window.watsonAssistantChatOptions = {
+    integrationID: "b44ea871-acb2-4ba4-bf30-d2023590028c",
+    region: "au-syd",
+    serviceInstanceID: "551c1a47-7507-4b22-bd85-0371e9825132",
+    element: document.getElementById("chat-container"),
+    onLoad: async (instance) => { await instance.render(); }
+  };
+  setTimeout(function(){
+    const t = document.createElement('script');
+    t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/"
+      + (window.watsonAssistantChatOptions.clientVersion || 'latest')
+      + "/WatsonAssistantChatEntry.js";
+    document.head.appendChild(t);
+  });
+</script>
+
+</body>
+</html>
